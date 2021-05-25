@@ -1,18 +1,24 @@
 import { useState } from "react"
-import ProductNumber from "./ProductNumber";
 
 function Product(props) {
 
-
     const [number, setNumber] = useState(0);
 
-
-
 return (
- <div>
+    <>
+ <div className={"product"}>
      <h2>{props.name}</h2>
+     <button
+         onClick={() => setNumber (number - 1)}
+     > - </button>
+     <p> {number} </p>
+     <button
+         onClick={() => setNumber (number + 1)}
+     > + </button>
  </div>
+    </>
 )
 }
+
 
 export default Product;
