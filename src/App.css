@@ -36,3 +36,9 @@ p {
     margin: 16px;
     width: 250px;
 }
+
+.inputfieldContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
