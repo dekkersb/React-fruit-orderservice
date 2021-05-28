@@ -77,7 +77,8 @@ function App() {
             </button>
         </div>
 
-        <form onSubmit={handleSubmit(onFormSubmit)}>
+
+        <form className={"formulier"} onSubmit={handleSubmit(onFormSubmit)}>
 
                 <label htmlFor="forname">Voornaam</label>
             <input className={"inputfields"}
@@ -88,7 +89,7 @@ function App() {
                        {
                            required: {
                                value: true,
-                               message: 'Dit veld mag niet leeg zijn'}
+                               message: '* Dit veld mag niet leeg zijn'}
                        }
                        )}
             />
@@ -103,7 +104,7 @@ function App() {
                            {
                                required: {
                                    value: true,
-                                   message: 'Dit veld mag niet leeg zijn'}
+                                   message: '* Dit veld mag niet leeg zijn'}
                            }
                            )}
                 />
@@ -118,10 +119,10 @@ function App() {
                            {
                                required: {
                                    value: true,
-                                   message: 'Dit veld mag niet leeg zijn'},
+                                   message: '* Dit veld mag niet leeg zijn'},
                            min: {
                                    value: 18,
-                                   message: "Je moet minimaal 18 jaar of ouder zijn"}
+                                   message: "* Je moet minimaal 18 jaar of ouder zijn"}
                            }
                            )}
                 />
@@ -136,7 +137,7 @@ function App() {
                            {
                                required: {
                                    value: true,
-                                   message: 'Dit veld mag niet leeg zijn'}
+                                   message: '* Dit veld mag niet leeg zijn'}
                            }
                            )}
                 />
@@ -151,46 +152,46 @@ function App() {
                            {
                                required: {
                                    value: true,
-                                   message: 'Dit veld mag niet leeg zijn'}
+                                   message: '* Dit veld mag niet leeg zijn'}
                            }
                            )}
                 />
             {errors.huisnummer && <p className={"errorMessage"}>{errors.huisnummer.message}</p>}
 
-                <h2>Bezorgfrequentie</h2>
-
-                <label htmlFor="everyWeek">
+                <label id={"frequentie"}>Bezorgfrequentie</label>
+                <legend htmlFor="everyWeek">
                     <input {...register("frequentie", { required: {
                             value: true,
-                            message: 'Dit veld is verplicht'}
+                            message: '* Dit veld is verplicht'}
                     })} type="radio" value="Iedere week" /> Iedere week
-                </label>
+                </legend>
 
-                <label htmlFor="everyOtherWeek">
+                <legend htmlFor="everyOtherWeek">
                     <input {...register("frequentie", { required: {
                             value: true,
-                            message: 'Dit veld is verplicht'}
+                            message: '* Dit veld is verplicht'}
                     })} type="radio" value="Om de week" /> Om de week
-                </label>
+                </legend>
 
-                <label htmlFor="everyMonth">
+                <legend htmlFor="everyMonth">
                     <input {...register("frequentie", { required: {
                             value: true,
-                            message: 'Dit veld is verplicht'}
+                            message: '* Dit veld is verplicht'}
                     })} type="radio" value="Iedere maand" /> Iedere maand
-                </label>
+                </legend>
 
-                <label htmlFor="other">
+                <legend htmlFor="other">
                     <input {...register("frequentie", { required: {
                             value: true,
-                            message: 'Dit veld is verplicht'}
+                            message: '* Dit veld is verplicht'}
                     })} type="radio" value="Anders" /> Anders
-                </label>
+                </legend>
 
             {errors.frequentie && <p className={"errorMessage"}>{errors.frequentie.message}</p>}
 
-            <label htmlFor="comments">
+            <label id={"commentbox"} htmlFor="comments">
                 Opmerking
+            </label>
             <textarea
             name="comments"
             id="comments"
@@ -199,9 +200,8 @@ function App() {
             {...register("comments")}
             >
             </textarea>
-            </label>
 
-                <label htmlFor="terms-and-conditions">
+                <label id={"terms"} htmlFor="terms-and-conditions">
                     <input
                         type="checkbox"
                         name="terms-and-conditions"
@@ -219,7 +219,6 @@ function App() {
                 >
                     Verstuur
                 </button>
-
         </form>
     </>
   )
