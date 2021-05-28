@@ -10,7 +10,7 @@ function App() {
     const [kiwi, setKiwis] = useState(0);
 
     const [checkedTerms, toggleCheckedTerms] = React.useState(false);
-    const { handleSubmit, register} = useForm();
+    const { handleSubmit, formState: {errors}, register} = useForm();
 
     function resetNumbers () {
         setBananas (0)
@@ -70,9 +70,6 @@ function App() {
                 > + </button>
             </div>
 
-
-
-
             <button className={"resetbutton"}
             onClick={()=>{resetNumbers()}}
             >
@@ -87,54 +84,110 @@ function App() {
                    type="text"
                    id="forname"
                    name="forname"
-                   {...register("voornaam")}
+                   {...register("voornaam",
+                       {
+                           required: {
+                               value: true,
+                               message: 'Dit veld mag niet leeg zijn'}
+                       }
+                       )}
             />
+            {errors.voornaam && <p className={"errorMessage"}>{errors.voornaam.message}</p>}
 
                 <label htmlFor="surname">Achternaam</label>
                 <input className={"inputfields"}
                        type="text"
                        id="surname"
                        name="surname"
-                       {...register("achternaam")}
+                       {...register("achternaam",
+                           {
+                               required: {
+                                   value: true,
+                                   message: 'Dit veld mag niet leeg zijn'}
+                           }
+                           )}
                 />
+            {errors.achternaam && <p className={"errorMessage"}>{errors.achternaam.message}</p>}
 
                 <label htmlFor="age">Leeftijd</label>
                 <input className={"inputfields"}
                        type="number"
                        id="age"
                        name="age"
-                       {...register("leeftijd")}
+                       {...register("age",
+                           {
+                               required: {
+                                   value: true,
+                                   message: 'Dit veld mag niet leeg zijn'},
+                           min: {
+                                   value: 18,
+                                   message: "Je moet minimaal 18 jaar of ouder zijn"}
+                           }
+                           )}
                 />
+            {errors.age && <p className={"errorMessage"}>{errors.age.message}</p>}
 
                 <label htmlFor="postal">Postcode</label>
                 <input className={"inputfields"}
                        type="text"
                        id="postal"
                        name="postal code"
-                       {...register("postcode")}
+                       {...register("postal",
+                           {
+                               required: {
+                                   value: true,
+                                   message: 'Dit veld mag niet leeg zijn'}
+                           }
+                           )}
                 />
+            {errors.postal && <p className={"errorMessage"}>{errors.postal.message}</p>}
 
                 <label htmlFor="housenumber">Huisnummer</label>
                 <input className={"inputfields"}
                        type="number"
                        id="housenumber"
                        name="housenumber"
-                       {...register("huisnummer")}
+                       {...register("huisnummer",
+                           {
+                               required: {
+                                   value: true,
+                                   message: 'Dit veld mag niet leeg zijn'}
+                           }
+                           )}
                 />
+            {errors.huisnummer && <p className={"errorMessage"}>{errors.huisnummer.message}</p>}
 
                 <h2>Bezorgfrequentie</h2>
+
                 <label htmlFor="everyWeek">
-                    <input {...register("frequentie")} type="radio" value="Iedere week" /> Iedere week
+                    <input {...register("frequentie", { required: {
+                            value: true,
+                            message: 'Dit veld is verplicht'}
+                    })} type="radio" value="Iedere week" /> Iedere week
                 </label>
+
                 <label htmlFor="everyOtherWeek">
-                    <input {...register("frequentie")} type="radio" value="Om de week" /> Om de week
+                    <input {...register("frequentie", { required: {
+                            value: true,
+                            message: 'Dit veld is verplicht'}
+                    })} type="radio" value="Om de week" /> Om de week
                 </label>
+
                 <label htmlFor="everyMonth">
-                    <input {...register("frequentie")} type="radio" value="Iedere maand" /> Iedere maand
+                    <input {...register("frequentie", { required: {
+                            value: true,
+                            message: 'Dit veld is verplicht'}
+                    })} type="radio" value="Iedere maand" /> Iedere maand
                 </label>
+
                 <label htmlFor="other">
-                    <input {...register("frequentie")} type="radio" value="Anders" /> Anders
+                    <input {...register("frequentie", { required: {
+                            value: true,
+                            message: 'Dit veld is verplicht'}
+                    })} type="radio" value="Anders" /> Anders
                 </label>
+
+            {errors.frequentie && <p className={"errorMessage"}>{errors.frequentie.message}</p>}
 
             <label htmlFor="comments">
                 Opmerking
@@ -170,6 +223,6 @@ function App() {
         </form>
     </>
   )
-}
+};
 
 export default App;
